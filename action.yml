@@ -1,6 +1,10 @@
 name: 'Trivy scan and publish to Platform'
 description: 'Runs a Trivy SAST scan in your GitHub Actions workflow and publishes the results to the CloudBees platform.'
 
+branding:
+  icon: 'command'
+  color: 'purple'
+
 inputs:
   cloudbees-pat: 
     description: Cloudbees PAT token of User
