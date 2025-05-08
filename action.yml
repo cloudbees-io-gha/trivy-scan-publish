@@ -1,5 +1,5 @@
-name: Trivy scan and publish to Platform
-description: Runs a Trivy SAST scan in your GitHub Actions workflow and publishes the results to the CloudBees platform.
+name: 'Trivy scan and publish to Platform'
+description: 'Runs a Trivy SAST scan in your GitHub Actions workflow and publishes the results to the CloudBees platform.'
 
 inputs:
   cloudbees-pat: 
