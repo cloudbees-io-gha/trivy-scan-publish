@@ -8,7 +8,8 @@ branding:
 inputs:
   cloudbees-pat: 
     description: Cloudbees PAT token of User
-    required: true
+    required: false
+    default: ""
   cloudbees-url: 
     description: Cloudbees API URL
     required: false
