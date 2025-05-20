@@ -25,6 +25,10 @@ inputs:
     required: false
     default: ''
 
+permissions:
+  id-token: write
+  contents: read
+
 runs:
   using: "composite"
   steps:
