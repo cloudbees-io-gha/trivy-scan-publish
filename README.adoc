@@ -89,6 +89,9 @@ on:
 jobs:
   trivy-scan:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read 
 
     steps:
       - name: Check out source code
