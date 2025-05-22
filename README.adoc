@@ -46,9 +46,10 @@ The following is a basic example of using this action:
 
 [source,yaml]
 ----
-      permissions:
+    permissions:
       id-token: write
       contents: read
+    steps:
       - name: Trivy SAST scan
         uses: cloudbees-io-gha/trivy-scan-publish@v1
         with:
@@ -62,9 +63,10 @@ To learn more, refer to the link:https://trivy.dev/v0.33/docs/licenses/scanning/
 
 [source,yaml]
 ----
-      permissions:
+    permissions:
       id-token: write
       contents: read
+    steps:
       - name: Trivy SAST scan
         uses: cloudbees-io-gha/trivy-scan-publish@v1
         with:
