@@ -51,7 +51,7 @@ The following is a basic example of using this action:
       contents: read
     steps:
       - name: Trivy SAST scan
-        uses: cloudbees-io-gha/trivy-scan-publish@v1
+        uses: cloudbees-io-gha/trivy-scan-publish@v2
         with:
           binary-tar-path: example-tar-path.tar
 ----
@@ -68,7 +68,7 @@ To learn more, refer to the link:https://trivy.dev/v0.33/docs/licenses/scanning/
       contents: read
     steps:
       - name: Trivy SAST scan
-        uses: cloudbees-io-gha/trivy-scan-publish@v1
+        uses: cloudbees-io-gha/trivy-scan-publish@v2
         with:
           binary-tar-path: example-tar-path.tar
           license: true
@@ -111,7 +111,7 @@ jobs:
           docker build -t myapp:latest .
 
       - name: Run Trivy SAST scan
-        uses: cloudbees-io-gha/trivy-scan-publish@v1
+        uses: cloudbees-io-gha/trivy-scan-publish@v2
         with:
           binary-tar-path: output.tar
 
