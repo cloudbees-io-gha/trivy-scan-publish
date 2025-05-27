@@ -24,11 +24,6 @@ Set up the CloudBees platform and GHA to work together, providing key features o
 
 NOTE: The binary file must be in the TAR format.
 
-| `cloudbees-pat`
-| String
-| Yes
-| The https://docs.cloudbees.com/docs/cloudbees-platform/latest/workflows/personal-access-token[CloudBees platform personal access token].
-
 | `cloudbees-url`
 | String
 | No
@@ -51,12 +46,14 @@ The following is a basic example of using this action:
 
 [source,yaml]
 ----
-
+    permissions:
+      id-token: write
+      contents: read
+    steps:
       - name: Trivy SAST scan
-        uses: cloudbees-io-gha/trivy-scan-publish@v1
+        uses: cloudbees-io-gha/trivy-scan-publish@v2
         with:
           binary-tar-path: example-tar-path.tar
-          cloudbees-pat : ${{ secrets.CloudBees-platform-PAT }}
 ----
 
 === Example using license scan
@@ -66,12 +63,14 @@ To learn more, refer to the link:https://trivy.dev/v0.33/docs/licenses/scanning/
 
 [source,yaml]
 ----
-
+    permissions:
+      id-token: write
+      contents: read
+    steps:
       - name: Trivy SAST scan
-        uses: cloudbees-io-gha/trivy-scan-publish@v1
+        uses: cloudbees-io-gha/trivy-scan-publish@v2
         with:
           binary-tar-path: example-tar-path.tar
-          cloudbees-pat: ${{ secrets.CloudBees-platform-PAT }}
           license: true
 ----
 
@@ -96,6 +95,9 @@ on:
 jobs:
   trivy-scan:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read 
 
     steps:
       - name: Check out source code
@@ -109,10 +111,9 @@ jobs:
           docker build -t myapp:latest .
 
       - name: Run Trivy SAST scan
-        uses: cloudbees-io-gha/trivy-scan-publish@v1
+        uses: cloudbees-io-gha/trivy-scan-publish@v2
         with:
           binary-tar-path: output.tar
-          cloudbees-pat: ${{ secrets.CLOUDBEES_PAT }}
 
 ----
 --

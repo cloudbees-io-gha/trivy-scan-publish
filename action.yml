@@ -6,9 +6,6 @@ branding:
   color: 'purple'
 
 inputs:
-  cloudbees-pat: 
-    description: Cloudbees PAT token of User
-    required: true
   cloudbees-url: 
     description: Cloudbees API URL
     required: false
@@ -42,7 +39,6 @@ runs:
       run: |
         docker run --rm \
           -v $GITHUB_WORKSPACE:$GITHUB_WORKSPACE \
-          -e INPUT_CLOUDBEES_API_TOKEN="${{ inputs.cloudbees-pat }}" \
           -e INPUT_CLOUDBEES_API_URL="${{ inputs.cloudbees-url }}" \
           -e INPUT_RUN_ID="${{ github.run_id }}" \
           -e INPUT_IS_GITHUB_WORKFLOW="true" \
@@ -56,7 +52,9 @@ runs:
           -e GITHUB_JOB="${{ github.job }}" \
           -e GITHUB_PROVIDER="GITHUB" \
           -e GITHUB_WORKSPACE="$GITHUB_WORKSPACE" \
-          public.ecr.aws/l7o7z1g8/actions/assets-plugin-chain-utils:0dea78066b1aecbca8a3a6674aade8ee49b5d57a \
+          -e ACTIONS_ID_TOKEN_REQUEST_TOKEN=$ACTIONS_ID_TOKEN_REQUEST_TOKEN \
+          -e ACTIONS_ID_TOKEN_REQUEST_URL=$ACTIONS_ID_TOKEN_REQUEST_URL \
+          public.ecr.aws/l7o7z1g8/actions/assets-plugin-chain-utils:f725443f3373e3939a1e0258f994fe6a46cf76dc \
           generate-references --asset-type "BINARY" --tags "BINARY_CONTAINER" --binary-tar-path ${{ inputs.binary-tar-path }}
 
     - name: Run trivy compliance plugin
@@ -83,7 +81,6 @@ runs:
       run: |
         docker run --rm \
           -v $GITHUB_WORKSPACE:$GITHUB_WORKSPACE \
-          -e INPUT_CLOUDBEES_API_TOKEN="${{ inputs.cloudbees-pat }}" \
           -e INPUT_CLOUDBEES_API_URL="${{ inputs.cloudbees-url }}" \
           -e INPUT_RUN_ID="${{ github.run_id }}" \
           -e INPUT_IS_GITHUB_WORKFLOW="true" \
@@ -97,5 +94,7 @@ runs:
           -e GITHUB_JOB="${{ github.job }}" \
           -e GITHUB_PROVIDER="GITHUB" \
           -e GITHUB_WORKSPACE="$GITHUB_WORKSPACE" \
-          public.ecr.aws/l7o7z1g8/actions/assets-plugin-chain-utils:0dea78066b1aecbca8a3a6674aade8ee49b5d57a \
+          -e ACTIONS_ID_TOKEN_REQUEST_TOKEN=$ACTIONS_ID_TOKEN_REQUEST_TOKEN \
+          -e ACTIONS_ID_TOKEN_REQUEST_URL=$ACTIONS_ID_TOKEN_REQUEST_URL \
+          public.ecr.aws/l7o7z1g8/actions/assets-plugin-chain-utils:f725443f3373e3939a1e0258f994fe6a46cf76dc \
           process-outputs
