@@ -92,7 +92,8 @@ runs:
         "${CMD[@]}"
 
 
-    - name: Complete execution plan
+    - id: process-outputs
+      name: Complete execution plan
       shell: bash
       run: |
         docker run --rm \
